@@ -41,17 +41,17 @@ func getLinesChannel(f io.ReadCloser) <-chan string {
 }
 
 func main() {
-	listener, err := net.Listen("tcp",":42059")
+	listener, err := net.Listen("tcp", ":42059")
 	if err != nil {
 		log.Fatal("error", "error", err)
 	}
-for {
-	conn, err := listener.Accept()
-	if err != nil {
-		log.Fatal("error", "error", err)
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			log.Fatal("error", "error", err)
+		}
+		for line := range getLinesChannel(conn) {
+			fmt.Printf("read: %s\n", line)
+		}
 	}
-	for line := range getLinesChannel(conn){
-		fmt.Printf("read: %s\n", line)
-	}
-}
 }

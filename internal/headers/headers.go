@@ -54,22 +54,24 @@ func NewHeaders() *Headers {
 	}
 }
 
-func (h *Headers) Get(name string) string {
-	return h.headers[strings.ToLower(name)]
+func (h *Headers) Get(name string) (string, bool) {
+	str, ok := h.headers[strings.ToLower(name)]
+
+	return str, ok
 }
 
 func (h *Headers) Set(name, value string) {
 	name = strings.ToLower(name)
 	if v, ok := h.headers[name]; ok {
 		h.headers[name] = fmt.Sprintf("%s,%s", v, value)
-	}else{
+	} else {
 		h.headers[name] = value
 	}
 
 }
 
-func (h *Headers) ForEach(cb func(n, v string)){
-	for n, v := range h.headers{
+func (h *Headers) ForEach(cb func(n, v string)) {
+	for n, v := range h.headers {
 		cb(n, v)
 	}
 }

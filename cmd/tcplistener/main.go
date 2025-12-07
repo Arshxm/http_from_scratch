@@ -17,7 +17,7 @@ func main() {
 		if err != nil {
 			log.Fatal("error", "error", err)
 		}
-		r, err := request.RequestFromReader(conn)
+			r, err := request.RequestFromReader(conn)
 		if err != nil {
 			log.Fatal("error", "error", err)
 		}
@@ -30,6 +30,7 @@ func main() {
 		r.Headers.ForEach(func(n, v string) {
 			fmt.Printf("- %s: %s\n", n, v)
 		})
+
 		fmt.Printf("Body:\n")
 		fmt.Printf("%s\n", r.Body)
 	}

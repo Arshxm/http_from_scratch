@@ -14,7 +14,6 @@ type RequestLine struct {
 	RequestTarget string
 	Method        string
 }
-
 type Request struct {
 	RequestLine RequestLine
 	Headers     *headers.Headers
@@ -24,7 +23,7 @@ type Request struct {
 
 func getInt(headers *headers.Headers, name string, defaultValue int) int {
 	valueStr, exists := headers.Get(name)
-	if !exists {
+if !exists {
 		return defaultValue
 	}
 
